@@ -1,0 +1,50 @@
+#TeacherList .formList {
+  margin-top: 3rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  flex-direction: column;
+}
+#TeacherList .formList > div {
+  width: 100%;
+  max-width: 450px;
+  gap: .5rem;
+  display: flex;
+  flex-direction: column;
+}
+#TeacherList .formList label {
+  font-weight: 300;
+  color: var(--color-text-in-primary);
+}
+#TeacherList .formList select {
+  font-weight: 400;
+  color: var(--color-text-base);
+  background-color: var(--color-input-background);
+  padding: 1.2rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  flex: 1;
+
+  font-size: 1.7rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  
+}
+#TeacherList .formList select:hover {
+  border: 2px solid var( --color-secundary-dark);
+}
+#TeacherList .cards {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: -35px;
+  gap: 2rem;
+}
+@media (min-width: 800px) {
+  #TeacherList .formList {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

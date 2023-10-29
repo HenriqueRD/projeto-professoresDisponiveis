@@ -41,21 +41,23 @@ body {
   background: var(--color-background);
 }
 
-#root {
+/*#root {
   display: flex;
   align-items: center;
   justify-content: center;
-}
+}*/
 
 body,
 input,
 button,
-textarea, a, select  {
-  font: 500 1.6rem "Roboto";
+textarea, a, select, label  {
+  font: 400 1.6rem "Roboto";
   color: var(--color-text-base);
   transition: 200ms;
 }
-
+a {
+  text-decoration: none;
+}
 input, select {
   outline: 0;
   border: none;
@@ -68,7 +70,7 @@ button {
 }
 .container {
   width: 90vw;
-  max-width: 1100px;
+  max-width: 750px;
   margin: 0 auto;
 }
 

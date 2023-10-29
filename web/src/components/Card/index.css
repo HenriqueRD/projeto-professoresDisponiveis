@@ -1,0 +1,94 @@
+#Card {
+  display: flex;
+  flex-direction: column;
+}
+#Card .info {
+  padding: 2rem;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  background-color: var(--color-box-base);
+  border-top: 2px solid var(--color-line-in-white);
+  border-right: 2px solid var(--color-line-in-white);
+  border-left: 2px solid var(--color-line-in-white);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+#Card .info .user {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+#Card .info .user img{
+  width: 64px;
+  height: 64px;
+  border-radius: 1000px;
+  border: 2px solid var(--color-secundary-dark);
+}
+#Card .info .user > div{
+  display: flex;
+  gap: .5rem;
+  flex-direction: column;
+}
+#Card .info .user > div strong {
+  font-size: 2rem;
+}
+#Card .info .user > div span {
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+#Card .info .user > div span {
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+#Card .footer {
+  padding: 2rem;
+  background-color: var(--color-box-footer);
+  border: 2px solid var(--color-line-in-white);
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+#Card .footer > span  {
+  font-weight: 300;
+  font-size: 1.7rem;
+}
+#Card .footer > span > span {
+  font-weight: 500;
+  color: var(--color-primary-darker);
+}
+#Card .footer > a {
+  display: flex;
+  background-color: var(--color-secundary);
+  gap: 1rem;
+  color: var(--color-title-in-primary);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 1.5rem;
+  border-radius: 8px;
+  font-size: 1.8rem;
+  align-items: center;
+}
+#Card .footer > a:hover {
+  display: flex;
+  background-color: var(--color-secundary-dark);
+  gap: 1rem;
+  align-items: center;
+}
+@media (min-width: 800px) {
+  #Card .info {
+    padding: 3rem 4rem 2rem 4rem; 
+  }
+  #Card .footer {
+    padding: 2rem 4rem 3rem 4rem;
+  }
+  #Card .footer {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1.5rem;
+    align-items: center;
+  }
+}
