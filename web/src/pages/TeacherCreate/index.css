@@ -1,0 +1,116 @@
+#TeacherCreate form > .content {
+  background-color: var(--color-box-base);
+  border: 1px solid var(--color-line-in-white);
+  padding: 4rem 2.5rem;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+#TeacherCreate form {
+  position: relative;
+  top: -44px;
+}
+#TeacherCreate form > .content > .clield {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+#TeacherCreate form .clield .input {
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+}
+#TeacherCreate form .clield .input input, textarea {
+  font-weight: 400;
+  color: var(--color-text-base);
+  background-color: var(--color-input-background);
+  padding: 1.2rem;
+  font-size: 1.7rem;
+  border: 1px solid var(--color-line-in-white);
+  border-radius: 8px;
+}
+#TeacherCreate form .clield .input input:hover {
+  border-color: var(--color-secundary);
+}
+#TeacherCreate form .clield .input textarea {
+  max-width: 100%;
+  min-width: 100%;
+  max-height: 120px;
+  min-height: 100px;
+}
+#TeacherCreate form .clield .input > select {
+  font-weight: 400;
+  color: var(--color-text-base);
+  background-color: var(--color-input-background);
+  padding: 1.2rem;
+  font-size: 1.7rem;
+  border: 1px solid var(--color-line-in-white);
+  border-radius: 8px;
+}
+#TeacherCreate form .clield .input > select:hover {
+  border-color: var(--color-secundary);
+}
+#TeacherCreate form .clield .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#TeacherCreate form .clield .header button {
+  font-weight: 800;
+  font-size: 1.7rem;
+  color: var(--color-secundary);
+}
+#TeacherCreate form .clield .header button:hover {
+  color: var(--color-secundary-dark);
+}
+#TeacherCreate .footer {
+  padding: 4rem 2.5rem;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  flex-direction: column;
+  background-color: var(--color-box-footer);
+  border-left: 1px solid var(--color-line-in-white);
+  border-right: 1px solid var(--color-line-in-white);
+  border-bottom: 1px solid var(--color-line-in-white);
+}
+#TeacherCreate .footer button {
+  padding: 2rem 4rem;
+  border-radius: 8px;
+  color: var(--color-title-in-primary);
+  font-weight: 500;
+  background-color: var(--color-secundary);
+}
+#TeacherCreate .footer button:hover {
+  background-color: var(--color-secundary-dark);
+}
+#TeacherCreate .footer span {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+#TeacherCreate .footer span svg {
+  color: var(--color-primary);
+}
+#TeacherCreate form .schedule {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  column-gap: 3rem;
+}
+@media (min-width: 700px) {
+  #TeacherCreate form > .content {
+    padding: 5rem;
+  }
+  #TeacherCreate form > .footer {
+    display: flex;
+    align-items: center;
+    gap: 0rem;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5rem;
+  }
+}
