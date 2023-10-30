@@ -1,9 +1,12 @@
 import express from 'express'
-import { create, list } from './controllers/classes_controller'
+import { create, listClasses } from './controllers/classes_controller'
+import { listSubjects } from './controllers/subjects_controller'
 
 const routes = express.Router()
 
-routes.get('/classes/', list)
+routes.get('/subjects/', listSubjects)
+
+routes.get('/classes/', listClasses)
 routes.post('/classes/', create)
 
 export default routes

@@ -50,7 +50,7 @@ export async function create(req: Request, res: Response) {
   }
 }
 
-export async function list(req: Request, res: Response) {
+export async function listClasses(req: Request, res: Response) {
 
   const { subject_id, week_day, time } = req.query
   
@@ -75,6 +75,6 @@ export async function list(req: Request, res: Response) {
     .where('classes.subjects_id', '=', Number(subject_id))
     .select(['classes.*', 'users.*'])
 
-    db.commit()
+  db.commit()
   res.status(200).json(classes)
 }
