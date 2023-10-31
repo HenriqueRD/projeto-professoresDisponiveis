@@ -27,10 +27,10 @@ export async function create(req: Request, res: Response) {
       subject_id: req.body.subject_id,
       user_id: user_id[0]
     }
-  
+    
     const class_id = await db('classes').insert(Class)
   
-    const schedule = req.body.schedule.map((x: Hours) => {
+    const schedules = req.body.schedules.map((x: Hours) => {
       return {
         week_day: x.week_day,
         from: sumMin(x.from),
@@ -39,14 +39,14 @@ export async function create(req: Request, res: Response) {
       }
     })
   
-    await db('class_schedule').insert(schedule)
+    await db('class_schedule').insert(schedules)
   
     db.commit()
   
     res.status(201).send()
   } catch (err) {
     db.rollback()
-    res.status(400).json({error: err})
+    res.status(400).json({ error: err} )
   }
 }
 
@@ -71,8 +71,8 @@ export async function listClasses(req: Request, res: Response) {
       .whereRaw('`class_schedule`.`to` > ??', [timeInMin])
     })
     .innerJoin('users', 'classes.user_id', '=', 'users.id')
-    .innerJoin('subjects', 'classes.subjects_id', '=', 'subjects.id')
-    .where('classes.subjects_id', '=', Number(subject_id))
+    .innerJoin('subjects', 'classes.subject_id', '=', 'subjects.id')
+    .where('classes.subject_id', '=', Number(subject_id))
     .select(['classes.*', 'users.*'])
 
   db.commit()
