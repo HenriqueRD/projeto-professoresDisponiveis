@@ -41,12 +41,6 @@ body {
   background: var(--color-background);
 }
 
-/*#root {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}*/
-
 body,
 input,
 button,
@@ -73,7 +67,6 @@ button {
   max-width: 750px;
   margin: 0 auto;
 }
-
 @media (min-width: 700px) {
   :root {
     font-size: 62.5%;

@@ -1,7 +1,7 @@
 import { Warning } from '@phosphor-icons/react'
 import Header from '../../components/Header'
 import './index.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, FormEvent } from 'react'
 import api from '../../api/api'
 
 export interface Subjects {
@@ -10,7 +10,7 @@ export interface Subjects {
 }
 
 interface Schedules {
-  day: number,
+  week_day: number,
   from: string,
   to: string
 }
@@ -18,45 +18,75 @@ interface Schedules {
 export default function TeacherCreate() {
   
   const [ subjects, setSubjects ] = useState<Subjects[]>([])
-  const [ schedules, setSchedules ] = useState<Schedules[]>([{ day: 0, from: '', to: '' }])
+
+  const [ name, setName ] = useState('')
+  const [ iconUrl, setIconUrl ] = useState('')
+  const [ phone, setPhone ] = useState('')
+  const [ description, setDescription ] = useState('')
+  const [ subject, setSubject ] = useState(0)
+  const [ price, setPrice ] = useState(0)
+  const [ schedules, setSchedules ] = useState<Schedules[]>([{ week_day: 0, from: '', to: '' }])
   
   useEffect(() => {
     api.get('/subjects/').then(x => setSubjects(x.data))
   }, [])
 
-  function handleNewSchedule() {
+  function handleAddNewSchedule() {
     setSchedules([...schedules, {
-      day: 0,
+      week_day: 0,
       from: "",
       to: ""
     }])
-    console.log(schedules)
+  }
+
+  function handleInsertSchedule(id : number, field : string, value : number | string) {
+    const newArray = schedules.map((x, index) => {
+      if(index == id) {
+        return { ...x, [field]: value }
+      }
+      return { ...x }
+    })
+    setSchedules(newArray)
+  }
+
+  function handleSubmit(e : FormEvent) {
+    e.preventDefault()
+    api.post('/classes/', {
+      name,
+      icon_url: iconUrl,
+      phone,
+      description,
+      subject_id: subject,
+      price,
+      schedules
+    }).catch(err => alert(err))
+  
   }
 
   return (
     <div id="TeacherCreate">
       <Header title='Que incrível que você quer dar aulas.' />
       <div className="container">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="content">
             <div className="clield">
               <h2>Seus dados</h2>
               <hr />
               <div className="input">
                 <label htmlFor="name">Nome completo</label>
-                <input id="name" type="text" />
+                <input id="name" type="text" value={name} onChange={e => setName(e.target.value)} />
               </div>
               <div className="input">
                 <label htmlFor="icon">Link da sua foto</label>
-                <input id="icon" type="text" />
+                <input id="icon" type="text" value={iconUrl} onChange={e => setIconUrl(e.target.value)} />
               </div>
               <div className="input">
                 <label htmlFor="phone">Número do telefone</label>
-                <input id="phone" type="text" />
+                <input id="phone" type="text" value={phone} onChange={e => setPhone(e.target.value)} />
               </div>
               <div className="input">
                 <label htmlFor="desc">Descrição</label>
-                <textarea id="desc" />
+                <textarea id="desc" value={description} onChange={e => setDescription(e.target.value)} />
               </div>
             </div>
             <div className="clield">
@@ -64,7 +94,7 @@ export default function TeacherCreate() {
               <hr />
               <div className="input">
                 <label htmlFor="materia">Matéria</label>
-                <select name="dia" id="materia">
+                <select name="dia" id="materia" value={subject} onChange={e => setSubject(Number(e.target.value))}>
                   <option value="0">Selecione uma Matéria</option>
                   {
                     subjects.map(x => {
@@ -77,22 +107,22 @@ export default function TeacherCreate() {
               </div>
               <div className="input">
                 <label htmlFor="price">Custo da sua hora por aula</label>
-                <input id="price" type="number" />
+                <input id="price" type="number" value={price} onChange={e => setPrice(Number(e.target.value))} />
               </div>
             </div>
             <div className="clield">
               <div className='header'>
                 <h2>Horários disponíveis</h2>
-                <button type="button" onClick={handleNewSchedule}>+ Novo horário</button>
+                <button type="button" onClick={handleAddNewSchedule}>+ Novo horário</button>
               </div>
               <hr />
               {
-                schedules.map(x => {
+                schedules.map((x, index) => {
                   return (
-                    <div className="schedule" key={Math.random()}>
+                    <div className="schedule" key={index}>
                       <div className='input'>
                         <label htmlFor="dia">Dia da semana</label>
-                        <select name="dia" id="dia" onChange={e => x.day = Number(e.target.value)}>
+                        <select required name="dia" id="dia" value={x.week_day} onChange={e => handleInsertSchedule(index, "week_day", Number(e.target.value))}>
                           <option value={0}>Selecione o dia</option>
                           <option value={1}>Segunda-feira</option>
                           <option value={2}>Terça-feira</option>
@@ -105,11 +135,11 @@ export default function TeacherCreate() {
                       </div>
                       <div className='input'>
                         <label htmlFor="das">Das</label>
-                        <input id="das" type="time" onChange={e => x.from = e.target.value} />
+                        <input required id="das" type="time" value={x.from} onChange={e => handleInsertSchedule(index, "from", e.target.value)} />
                       </div>
                       <div className='input'>
                         <label htmlFor="ate">Até</label>
-                        <input id="ate" type="time" onChange={e => x.to = e.target.value} />
+                        <input required id="ate" type="time"  onChange={e => handleInsertSchedule(index, "to", e.target.value)} />
                       </div>
                     </div>
                   )
@@ -126,3 +156,8 @@ export default function TeacherCreate() {
     </div>
   )
 }
+/*
+
+As vezes não sei nem onde eu tô, mas consigo me localizar facilmente em qualquer lugar. Tenho memória fotográfica e nunca fico perdido. Eu ensino a galera como não se perder na vida, com lições geográficas simples pra você nunca mais precisar de mapa na sua bela vida.
+https://img.freepik.com/fotos-gratis/homem-bonito-posando-e-sorrindo_23-2149396133.jpg
+*/

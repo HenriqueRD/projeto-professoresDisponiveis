@@ -1,6 +1,6 @@
 #Header header{
   padding: 2rem 0;
-  padding-bottom: 5rem;
+  padding-bottom: 7rem;
   background-color: var(--color-primary); 
   position: relative;
 }
@@ -30,7 +30,11 @@
 #Header header .content > .title h1 {
   font-size: 3.6rem;
 }
-@media (min-width: 700px) {
-  #Header {
+@media (max-width: 700px) {
+  #Header header{
+    padding-bottom: 2rem;
+  }
+  #Header header .content > .title h1 {
+    font-size: 2.8rem;
   }
 }

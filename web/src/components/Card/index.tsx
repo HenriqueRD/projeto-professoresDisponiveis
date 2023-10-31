@@ -23,7 +23,7 @@ export default function Card({ description, discipline, iconUrl, name, price } :
         <p>{description}</p>
       </div>
       <div className="footer">
-        <span>Preço/hora <span>{price}</span></span>
+        <span>Preço/hora <span>R$ {price}</span></span>
         <a href="#"><WhatsappLogo size={24} /> Entrar em contato</a>
       </div>
     </div>
