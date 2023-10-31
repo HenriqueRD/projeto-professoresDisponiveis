@@ -1,4 +1,4 @@
-import { Warning } from '@phosphor-icons/react'
+import { Trash, Warning } from '@phosphor-icons/react'
 import Header from '../../components/Header'
 import './index.css'
 import { useState, useEffect, FormEvent } from 'react'
@@ -37,6 +37,14 @@ export default function TeacherCreate() {
       from: "",
       to: ""
     }])
+  }
+
+  function handleDeleteSchedule(id : number) {
+    if(schedules.length == 1) {
+      return
+    }
+    const newArray = schedules.filter((x, index) => index !== id)
+    setSchedules(newArray)
   }
 
   function handleInsertSchedule(id : number, field : string, value : number | string) {
@@ -120,26 +128,35 @@ export default function TeacherCreate() {
                 schedules.map((x, index) => {
                   return (
                     <div className="schedule" key={index}>
-                      <div className='input'>
-                        <label htmlFor="dia">Dia da semana</label>
-                        <select required name="dia" id="dia" value={x.week_day} onChange={e => handleInsertSchedule(index, "week_day", Number(e.target.value))}>
-                          <option value={0}>Selecione o dia</option>
-                          <option value={1}>Segunda-feira</option>
-                          <option value={2}>Terça-feira</option>
-                          <option value={3}>Quarta-feira</option>
-                          <option value={4}>Quinta-feira</option>
-                          <option value={5}>Sexta-feira</option>
-                          <option value={6}>Sábado</option>
-                          <option value={7}>Domingo</option>
-                        </select>
-                      </div>
-                      <div className='input'>
-                        <label htmlFor="das">Das</label>
-                        <input required id="das" type="time" value={x.from} onChange={e => handleInsertSchedule(index, "from", e.target.value)} />
-                      </div>
-                      <div className='input'>
-                        <label htmlFor="ate">Até</label>
-                        <input required id="ate" type="time"  onChange={e => handleInsertSchedule(index, "to", e.target.value)} />
+                      <div className='item'>
+                        <div className='input'>
+                          <label htmlFor="dia">Dia da semana</label>
+                          <select required name="dia" id="dia" value={x.week_day} onChange={e => handleInsertSchedule(index, "week_day", Number(e.target.value))}>
+                            <option value={0}>Selecione o dia</option>
+                            <option value={1}>Segunda-feira</option>
+                            <option value={2}>Terça-feira</option>
+                            <option value={3}>Quarta-feira</option>
+                            <option value={4}>Quinta-feira</option>
+                            <option value={5}>Sexta-feira</option>
+                            <option value={6}>Sábado</option>
+                            <option value={7}>Domingo</option>
+                          </select>
+                        </div>
+                        <div className="input2">
+                          <div className='input'>
+                            <label htmlFor="das">Das</label>
+                            <input required id="das" type="time" value={x.from} onChange={e => handleInsertSchedule(index, "from", e.target.value)} />
+                          </div>
+                          <div className='input'>
+                            <label htmlFor="ate">Até</label>
+                            <input required id="ate" type="time"  onChange={e => handleInsertSchedule(index, "to", e.target.value)} />
+                          </div>
+                          <div className="button">
+                            <button type='button' onClick={() => handleDeleteSchedule(index)}>
+                              <Trash size={28} /> 
+                            </button>
+                          </div>
+                        </div>                        
                       </div>
                     </div>
                   )

@@ -97,11 +97,37 @@
   color: var(--color-primary);
 }
 #TeacherCreate form .schedule {
+  border-bottom: 2px solid var(--color-line-in-white);
+}
+#TeacherCreate form .schedule .item {
   display: flex;
   flex-direction: column;
-  column-gap: 3rem;
+  column-gap: 2.5rem;
   padding-bottom: 2rem;
-  border-bottom: 2px solid var(--color-line-in-white);
+  gap: 2rem;
+}
+#TeacherCreate form .schedule .item .button {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
+#TeacherCreate form .schedule .item .button button {
+  background-color: var(--color-primary);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: var(--color-title-in-primary);
+  background-color: var(--color-primary-light);
+}
+#TeacherCreate form .schedule .item .button button:hover {
+  background-color: var(--color-primary-lighter);
+}
+#TeacherCreate form .schedule .item .input2 {
+  display: grid;
+  grid-template-columns: 3fr 3fr 1fr;
+  column-gap: 2rem;
 }
 @media (min-width: 700px) {
   #TeacherCreate form > .content {
@@ -115,9 +141,9 @@
     justify-content: space-between;
     padding: 5rem;
   }
-  #TeacherCreate form .schedule {
+  #TeacherCreate form .schedule .item {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 3fr 2fr;
   }
   #TeacherCreate form {
     top: -60px;
